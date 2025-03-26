@@ -1,0 +1,30 @@
+def MAJOR = 0
+def MINOR = 1
+def PATCH = 0
+
+def determineBranch = {
+    def envBranch = System.getenv("GITHUB_REF_NAME")
+    if (envBranch) return envBranch
+
+    try {
+        def proc = "git rev-parse --abbrev-ref HEAD".execute()
+        proc.waitFor()
+        if (proc.exitValue() == 0) {
+            return proc.text.trim()
+        }
+    } catch (ignored) {}
+
+    return "local"
+}
+
+def branchName = determineBranch()
+def isSnapshot = project.hasProperty("SNAPSHOT")
+        ? project.findProperty("SNAPSHOT")?.toBoolean()
+        : branchName.startsWith("dev/")
+def versionString = isSnapshot ? "$MAJOR.$MINOR.$PATCH-SNAPSHOT" : "$MAJOR.$MINOR.$PATCH"
+
+ext {
+    libraryVersion = versionString
+    isSnapshotBuild = isSnapshot
+}
+

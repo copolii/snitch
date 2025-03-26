@@ -1,0 +1,52 @@
+# Gradle
+.gradle/
+build/
+*/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log files
+*.log
+
+# Android Studio/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (if using Firebase)
+google-services.json
+app/google-services.json
+
+# NDK / CMake / cache
+.cxx/
+.externalNativeBuild/
+**/cmake-build-debug/
+
+# Other
+*.DS_Store
+*.swp
+*.bak
+*.tmp
+
+# Kotlin build folders
+.kotlinc/
+
+# Jetpack Compose
+.compose-cache/
+
+# VSCode
+.vscode/
+
+# MacOS
+__MACOSX/
+
+# Generated files
+captures/
