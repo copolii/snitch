@@ -26,5 +26,6 @@ def versionString = isSnapshot ? "$MAJOR.$MINOR.$PATCH-SNAPSHOT" : "$MAJOR.$MINO
 ext {
     libraryVersion = versionString
     isSnapshotBuild = isSnapshot
+    isJitpackable = branchName == "main" || branchName.startsWith("dev/")
 }
 

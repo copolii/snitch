@@ -1,0 +1,7 @@
+jdk:
+  - openjdk11
+
+build:
+  gradle:
+    task: jitpackBuild
+

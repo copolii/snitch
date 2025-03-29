@@ -1,5 +1,8 @@
 # Snitch
+[![](https://jitpack.io/v/copolii/snitch.svg)](https://jitpack.io/#copolii/snitch)
+
 Snitches on Activity & Fragment lifecycles with a single line of code.
+
 ## Usage
 For the most basic monitoring of Activity lifecycle events, fragment lifecycle events and transactions, post and predraw snitching, simply add the following to your `Application`'s `onCreate` function:
 

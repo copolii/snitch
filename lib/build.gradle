@@ -10,8 +10,9 @@ logger.quiet("Version file: $versionFile")
 
 apply from: versionFile
 
-def group = "ca.mahram.snitch"
+
 def module = "snitch"
+group = "ca.mahram.snitch"
 version = libraryVersion
 
 logger.quiet("$group:$module:$version")
@@ -25,6 +26,8 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        archivesBaseName = "snitch-$version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,3 +54,18 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
 }
+
+tasks.register("jitpackBuild") {
+    group = "build"
+    description = "JitPack-aware build with branch/version enforcement"
+
+    // This task depends on the real build task
+    dependsOn "build"
+
+    doFirst {
+        if (!project.ext.isJitpackable) {
+            throw new GradleException("Current branch is not JitPack-buildable")
+        }
+    }
+}
+
