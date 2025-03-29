@@ -28,8 +28,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        archivesBaseName = "snitch-$version"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -56,14 +54,17 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
 }
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = group
-            artifactId = 'snitch'
-
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = group
+                artifactId = 'snitch'
                 from components.release
+
+//                artifact("$buildDir/outputs/aar/snitch-release.aar") {
+//                    builtBy(tasks.named("assembleRelease"))
+//                }
             }
         }
     }
